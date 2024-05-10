@@ -221,23 +221,32 @@ def process_file(filepath):
     feature_SMAC = dataset_pred[['SAP_pos_CDR', 'SAP_pos_Fv', 'SCM_neg_CDRL2','SCM_neg_Fv']]
     feature_Tm = dataset_pred[['SAP_pos_CDRH1', 'SAP_pos_CDRH2', 'SCM_pos_CDRH3']]
     
-    print(feature_ACSINS,feature_AS,feature_BVP)
     sc = StandardScaler()
+    X_ACSINS = feature_ACSINS.values
+    X_AS = feature_AS.values
+    X_BVP = feature_BVP.values
+    X_CIC = feature_CIC.values
+    X_CSI = feature_CSI.values
+    X_ELISA = feature_ELISA.values
+    X_HIC = feature_HIC.values
+    X_HEK = feature_HEK.values
+    X_PSR = feature_PSR.values
+    X_SGAC = feature_SGAC.values
+    X_SMAC = feature_SMAC.values
+    X_Tm = feature_Tm.values
 
-    X_ACSINS = sc.fit_transform(feature_ACSINS)
-    X_AS = sc.fit_transform(feature_AS)
-    X_BVP = sc.fit_transform(feature_BVP)
-    X_CIC = sc.fit_transform(feature_CIC)
-    X_CSI = sc.fit_transform(feature_CSI)
-    X_ELISA = sc.fit_transform(feature_ELISA)
-    X_HIC = sc.fit_transform(feature_HIC)
-    X_HEK = sc.fit_transform(feature_HEK)
-    X_PSR = sc.fit_transform(feature_PSR)
-    X_SGAC = sc.fit_transform(feature_SGAC)
-    X_SMAC = sc.fit_transform(feature_SMAC)
-    X_Tm = sc.fit_transform(feature_Tm)
-
-    print(X_ACSINS,X_AS,X_BVP)
+    X_ACSINS = sc.fit_transform(X_ACSINS)
+    X_AS = sc.fit_transform(X_AS)
+    X_BVP = sc.fit_transform(X_BVP)
+    X_CIC = sc.fit_transform(X_CIC)
+    X_CSI = sc.fit_transform(X_CSI)
+    X_ELISA = sc.fit_transform(X_ELISA)
+    X_HIC = sc.fit_transform(X_HIC)
+    X_HEK = sc.fit_transform(X_HEK)
+    X_PSR = sc.fit_transform(X_PSR)
+    X_SGAC = sc.fit_transform(X_SGAC)
+    X_SMAC = sc.fit_transform(X_SMAC)
+    X_Tm = sc.fit_transform(X_Tm)
 
     ACSINS_SVR_model = joblib.load('ACSINS_SVR_model.joblib')
     AS_LR_model = joblib.load('AS_LR_model.joblib')
