@@ -221,6 +221,7 @@ def process_file(filepath):
     feature_SMAC = dataset_pred[['SAP_pos_CDR', 'SAP_pos_Fv', 'SCM_neg_CDRL2','SCM_neg_Fv']]
     feature_Tm = dataset_pred[['SAP_pos_CDRH1', 'SAP_pos_CDRH2', 'SCM_pos_CDRH3']]
     
+    print(feature_ACSINS,feature_AS,feature_BVP)
     sc = StandardScaler()
 
     X_ACSINS = sc.fit_transform(feature_ACSINS)
@@ -235,6 +236,8 @@ def process_file(filepath):
     X_SGAC = sc.fit_transform(feature_SGAC)
     X_SMAC = sc.fit_transform(feature_SMAC)
     X_Tm = sc.fit_transform(feature_Tm)
+
+    print(X_ACSINS,X_AS,X_BVP)
 
     ACSINS_SVR_model = joblib.load('ACSINS_SVR_model.joblib')
     AS_LR_model = joblib.load('AS_LR_model.joblib')

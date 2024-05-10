@@ -13,11 +13,6 @@
 from flask import Flask, request, redirect, url_for, render_template, flash, send_from_directory, abort, send_file
 import os
 from urllib.parse import quote as url_quote
-import pandas as pd
-import numpy as np
-import joblib
-from sklearn.preprocessing import StandardScaler
-
 import csv
 
 from main import process_file
