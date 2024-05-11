@@ -221,7 +221,6 @@ def process_file(filepath):
     feature_SMAC = dataset_pred[['SAP_pos_CDR', 'SAP_pos_Fv', 'SCM_neg_CDRL2','SCM_neg_Fv']]
     feature_Tm = dataset_pred[['SAP_pos_CDRH1', 'SAP_pos_CDRH2', 'SCM_pos_CDRH3']]
     
-    sc = StandardScaler()
     X_ACSINS = feature_ACSINS.values
     X_AS = feature_AS.values
     X_BVP = feature_BVP.values
@@ -237,62 +236,62 @@ def process_file(filepath):
 
     ACSINS_model = joblib.load('ACSINS_model.joblib')
     ACSINS_Scaler = joblib.load('ACSINS_scaler.joblib')
-    X_ACSINS = ACSINS_Scaler.transform(X_ACSINS)
+    X_ACSINS = ACSINS_Scaler.fit_transform(X_ACSINS)
     prediction_ACSINS = ACSINS_model.predict(X_ACSINS)
 
     AS_model = joblib.load('AS_model.joblib')
     AS_Scaler = joblib.load('AS_scaler.joblib')
-    X_AS = AS_Scaler.transform(X_AS)
+    X_AS = AS_Scaler.fit_transform(X_AS)
     prediction_AS = AS_model.predict(X_AS)
 
     BVP_model = joblib.load('BVP_model.joblib')
     BVP_Scaler = joblib.load('BVP_scaler.joblib')
-    X_BVP = BVP_Scaler.transform(X_BVP)
+    X_BVP = BVP_Scaler.fit_transform(X_BVP)
     prediction_BVP = BVP_model.predict(X_BVP)
 
     CIC_model = joblib.load('CIC_model.joblib')
     CIC_Scaler = joblib.load('CIC_scaler.joblib')
-    X_CIC = CIC_Scaler.transform(X_CIC)
+    X_CIC = CIC_Scaler.fit_transform(X_CIC)
     prediction_CIC = CIC_model.predict(X_CIC)
 
     CSI_model = joblib.load('CSI_model.joblib')
     CSI_Scaler = joblib.load('CSI_scaler.joblib')
-    X_CSI = CSI_Scaler.transform(X_CSI)
+    X_CSI = CSI_Scaler.fit_transform(X_CSI)
     prediction_CSI = CSI_model.predict(X_CSI)
 
     ELISA_model = joblib.load('ELISA_model.joblib')
     ELISA_Scaler = joblib.load('ELISA_scaler.joblib')
-    X_ELISA = ELISA_Scaler.transform(X_ELISA)
+    X_ELISA = ELISA_Scaler.fit_transform(X_ELISA)
     prediction_ELISA = ELISA_model.predict(X_ELISA)
 
     HEK_model = joblib.load('HEK_model.joblib')
     HEK_Scaler = joblib.load('HEK_scaler.joblib')
-    X_HEK = HEK_Scaler.transform(X_HEK)
+    X_HEK = HEK_Scaler.fit_transform(X_HEK)
     prediction_HEK = HEK_model.predict(X_HEK)
 
     HIC_model = joblib.load('HIC_model.joblib')
     HIC_Scaler = joblib.load('HIC_scaler.joblib')
-    X_HIC = HIC_Scaler.transform(X_HIC)
+    X_HIC = HIC_Scaler.fit_transform(X_HIC)
     prediction_HIC = HIC_model.predict(X_HIC)
 
     PSR_model = joblib.load('PSR_model.joblib')
     PSR_Scaler = joblib.load('PSR_scaler.joblib')
-    X_PSR = PSR_Scaler.transform(X_PSR)
+    X_PSR = PSR_Scaler.fit_transform(X_PSR)
     prediction_PSR = PSR_model.predict(X_PSR)
 
     SGAC_model = joblib.load('SGAC_model.joblib')
     SGAC_Scaler = joblib.load('SGAC_scaler.joblib')
-    X_SGAC = SGAC_Scaler.transform(X_SGAC)
+    X_SGAC = SGAC_Scaler.fit_transform(X_SGAC)
     prediction_SGAC = SGAC_model.predict(X_SGAC)
 
     SMAC_model = joblib.load('SMAC_model.joblib')
     SMAC_Scaler = joblib.load('SMAC_scaler.joblib')
-    X_SMAC = SMAC_Scaler.transform(X_SMAC)
+    X_SMAC = SMAC_Scaler.fit_transform(X_SMAC)
     prediction_SMAC = SMAC_model.predict(X_SMAC)
 
     Tm_model = joblib.load('Tm_model.joblib')
     Tm_Scaler = joblib.load('Tm_scaler.joblib')
-    X_Tm = Tm_Scaler.transform(X_Tm)
+    X_Tm = Tm_Scaler.fit_transform(X_Tm)
     prediction_Tm = Tm_model.predict(X_Tm)
 
     df2 = pd.concat([pd.DataFrame(name_list), pd.DataFrame(prediction_ACSINS), pd.DataFrame(prediction_AS), pd.DataFrame(prediction_BVP), pd.DataFrame(prediction_CIC), pd.DataFrame(prediction_CSI), pd.DataFrame(prediction_ELISA), pd.DataFrame(prediction_HIC), pd.DataFrame(prediction_HEK), pd.DataFrame(prediction_PSR), pd.DataFrame(prediction_SGAC), pd.DataFrame(prediction_SMAC), pd.DataFrame(prediction_Tm)], ignore_index=True, axis=1)
