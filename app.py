@@ -48,6 +48,7 @@ def write_to_csv(data, filename):
 
 #@app.route('/upload', methods=['GET','POST'])
 
+@app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         file = request.files.get('file')
@@ -106,7 +107,6 @@ def upload_file():
             flash(f'Error processing file: {e}')
             return redirect(request.url)
     return render_template('index.html')
-
 
 
 @app.route('/download/<filename>', methods=['GET'])
