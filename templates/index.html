@@ -93,21 +93,6 @@
                 <h2>Prediction Results</h2>
                 <div style="overflow-x: auto; max-height: 400px;">
                     <table style="border: 1px solid black; border-collapse: collapse;">
-                        <tr>
-                            <th>Name</th>
-                            <th>ACSINS_transformed</th>
-                            <th>AS</th>
-                            <th>BVP</th>
-                            <th>CIC_transformed</th>
-                            <th>CSI_transformed</th>
-                            <th>ELISA</th>
-                            <th>HIC</th>
-                            <th>HEK</th>
-                            <th>PSR</th>
-                            <th>SGAC_transformed</th>
-                            <th>SMAC_transformed</th>
-                            <th>Tm</th>
-                        </tr>
                         {% for row in predictions_data %}
                             <tr>
                                 {% for item in row %}
