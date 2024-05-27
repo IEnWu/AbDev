@@ -48,13 +48,6 @@ def write_to_csv(data, filename):
 
 #@app.route('/upload', methods=['GET','POST'])
 
-def format_data(data):
-    formatted_data = []
-    for row in data:
-        formatted_row = [f"{float(x):.3f}" if x.replace('.', '', 1).isdigit() else x for x in row]
-        formatted_data.append(formatted_row)
-    return formatted_data
-
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
@@ -74,12 +67,17 @@ def upload_file():
         try:
             descriptors_path, predictions_path = process_file(filepath)
             
+            with open(descriptors_path, 'r', newline='') as csvfile:
+                reader = csv.reader(csvfile)
+                descriptors_data = list(reader)
+                
             with open(predictions_path, 'r', newline='') as csvfile:
                 reader = csv.reader(csvfile)
-                raw_predictions_data = list(reader)
-                predictions_data = format_data(raw_predictions_data)  # 格式化数据
+                predictions_data = list(reader)
 
             return render_template('index.html',
+                                   descriptors_data=descriptors_data,
+                                   descriptors_path=os.path.basename(descriptors_path),
                                    predictions_data=predictions_data,
                                    predictions_path=os.path.basename(predictions_path))
         except Exception as e:
@@ -87,6 +85,14 @@ def upload_file():
             return redirect(request.url)
     return render_template('index.html')
 
+
+@app.route('/download/<filename>', methods=['GET'])
+def download_file(filename):
+    directory = "uploads"
+    try:
+        return send_from_directory(directory, filename, as_attachment=True)
+    except FileNotFoundError:
+        abort(404)
 
 if __name__ == '__main__':
     app.run(debug=True)
