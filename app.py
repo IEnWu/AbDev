@@ -48,7 +48,6 @@ def write_to_csv(data, filename):
 
 #@app.route('/upload', methods=['GET','POST'])
 
-@app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
         file = request.files.get('file')
@@ -75,15 +74,39 @@ def upload_file():
                 reader = csv.reader(csvfile)
                 predictions_data = list(reader)
 
+            # Find the indices for each column
+            header = predictions_data[0]
+            acs_index = header.index("ACSINS_transformed")
+            as_index = header.index("AS")
+            bvp_index = header.index("BVP")
+            cic_index = header.index("CIC_transformed")
+            csi_index = header.index("CSI_transformed")
+            elisa_index = header.index("ELISA")
+            hic_index = header.index("HIC")
+            psr_index = header.index("PSR")
+            sgac_index = header.index("SGAC_transformed")
+            smac_index = header.index("SMAC_transformed")
+
             return render_template('index.html',
                                    descriptors_data=descriptors_data,
                                    descriptors_path=os.path.basename(descriptors_path),
                                    predictions_data=predictions_data,
-                                   predictions_path=os.path.basename(predictions_path))
+                                   predictions_path=os.path.basename(predictions_path),
+                                   acs_index=acs_index,
+                                   as_index=as_index,
+                                   bvp_index=bvp_index,
+                                   cic_index=cic_index,
+                                   csi_index=csi_index,
+                                   elisa_index=elisa_index,
+                                   hic_index=hic_index,
+                                   psr_index=psr_index,
+                                   sgac_index=sgac_index,
+                                   smac_index=smac_index)
         except Exception as e:
             flash(f'Error processing file: {e}')
             return redirect(request.url)
     return render_template('index.html')
+
 
 
 @app.route('/download/<filename>', methods=['GET'])

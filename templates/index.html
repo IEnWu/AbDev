@@ -38,7 +38,6 @@
                     <li>Click the "Submit" button to generate twelve (12) Biopysical properties. </li>
                 </ol>
                 <h3>Note: To process large datasets at once, please refer to our <a href="https://github.com/Lailabcode/AbDev" target="_blank">GitHub</a>.</h3>
-                <h3>Citation: <a href="https://www.biorxiv.org/content/10.1101/2024.02.28.582582v1" target="_blank">AbDev's manuscript</a> is currently under peer review and is temporarily available on bioRxiv for reference. </h3>
             </div> 
             <div id="sequence-submission">
                 <h1>> Sequence Submission</h1>
@@ -91,20 +90,44 @@
                 
                 <!-- Prediction Results Table -->
                 {% if predictions_path %}
-                    <h2>Prediction Results</h2>
-                    <div style="overflow-x: auto; max-height: 400px;">
-                        <table style="border: 1px solid black; border-collapse: collapse;">
-                            {% for row in predictions_data %}
-                                <tr>
-                                    {% for item in row %}
+                <h2>Prediction Results</h2>
+                <div style="overflow-x: auto; max-height: 400px;">
+                    <table style="border: 1px solid black; border-collapse: collapse;">
+                        {% for row in predictions_data %}
+                            <tr>
+                                {% for index, item in enumerate(row) %}
+                                    {% set value = item|float %}
+                                    {% if index == acs_index and value > 0.89 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == as_index and value > 0.08 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == bvp_index and value > 4.3 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == cic_index and value > 1.115 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == csi_index and value > 0.7335 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == elisa_index and value > 1.9 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == hic_index and value > 11.7 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == psr_index and value > 0.27 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == sgac_index and value > -0.8622 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% elif index == smac_index and value > 1.40 %}
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                    {% else %}
                                         <td style="border: 1px solid black; padding: 8px;">{{ item }}</td>
-                                    {% endfor %}
-                                </tr>
-                            {% endfor %}
-                        </table>
-                    </div>
-                    <p>Download the Prediction Results file here: <a href="{{ url_for('download_file', filename=predictions_path) }}">{{ predictions_path }}</a></p>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <p>Download the Prediction Results file here: <a href="{{ url_for('download_file', filename=predictions_path) }}">{{ predictions_path }}</a></p>
                 {% endif %}
+
                 
             </div>
         </section>
