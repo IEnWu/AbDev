@@ -96,28 +96,29 @@
                         {% for row in predictions_data %}
                             <tr>
                                 {% for item in row %}
+                                    {% set formatted_item = item|float|format('0.3f') %}
                                     {% if loop.index == 2 and item|float > 0.89 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 3 and item|float > 0.08 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 4 and item|float > 4.3 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 5 and item|float > 1.115 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 6 and item|float > 0.7335 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 7 and item|float > 1.9 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 8 and item|float > 11.7 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 10 and item|float > 0.27 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 11 and item|float < -0.8622 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% elif loop.index == 12 and item|float > 1.4 %}
-                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px; background-color: red;">{{ formatted_item }}</td>
                                     {% else %}
-                                        <td style="border: 1px solid black; padding: 8px;">{{ item }}</td>
+                                        <td style="border: 1px solid black; padding: 8px;">{{ formatted_item }}</td>
                                     {% endif %}
                                 {% endfor %}
 
