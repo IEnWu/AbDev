@@ -20,6 +20,13 @@ from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 #################
 
+def format_predictions(predictions):
+    if len(predictions.shape) > 1:
+        formatted = np.round(predictions, 3)
+    else:
+        formatted = [round(pred, 3) for pred in predictions]
+    return formatted
+
 def process_file(filepath):
 
     dataset = pd.read_csv(filepath)
@@ -294,9 +301,27 @@ def process_file(filepath):
     X_Tm = Tm_Scaler.transform(X_Tm)
     prediction_Tm = Tm_model.predict(X_Tm)
 
-    df2 = pd.concat([pd.DataFrame(name_list), pd.DataFrame(prediction_ACSINS), pd.DataFrame(prediction_AS), pd.DataFrame(prediction_BVP), pd.DataFrame(prediction_CIC), pd.DataFrame(prediction_CSI), pd.DataFrame(prediction_ELISA), pd.DataFrame(prediction_HIC), pd.DataFrame(prediction_HEK), pd.DataFrame(prediction_PSR), pd.DataFrame(prediction_SGAC), pd.DataFrame(prediction_SMAC), pd.DataFrame(prediction_Tm)], ignore_index=True, axis=1)
-    df2.columns = ['Name', 'ACSINS_transformed', 'AS', 'BVP', 'CIC_transformed', 'CSI_transformed', 'ELISA', 'HIC', 'HEK', 'PSR', 'SGAC_transformed', 'SMAC_transformed', 'Tm']
+    #df2 = pd.concat([pd.DataFrame(name_list), pd.DataFrame(prediction_ACSINS), pd.DataFrame(prediction_AS), pd.DataFrame(prediction_BVP), pd.DataFrame(prediction_CIC), pd.DataFrame(prediction_CSI), pd.DataFrame(prediction_ELISA), pd.DataFrame(prediction_HIC), pd.DataFrame(prediction_HEK), pd.DataFrame(prediction_PSR), pd.DataFrame(prediction_SGAC), pd.DataFrame(prediction_SMAC), pd.DataFrame(prediction_Tm)], ignore_index=True, axis=1)
+    #df2.columns = ['Name', 'ACSINS_transformed', 'AS', 'BVP', 'CIC_transformed', 'CSI_transformed', 'ELISA', 'HIC', 'HEK', 'PSR', 'SGAC_transformed', 'SMAC_transformed', 'Tm']
     
+    #prediction_path = 'uploads/Biophysical_Prediction.csv'
+    #df2.to_csv(prediction_path, index=False)
+    df2 = pd.DataFrame({
+    'Name': name_list,
+    'ACSINS_transformed': format_predictions(prediction_ACSINS),
+    'AS': format_predictions(prediction_AS),
+    'BVP': format_predictions(prediction_BVP),
+    'CIC_transformed': format_predictions(prediction_CIC),
+    'CSI_transformed': format_predictions(prediction_CSI),
+    'ELISA': format_predictions(prediction_ELISA),
+    'HIC': format_predictions(prediction_HIC),
+    'HEK': format_predictions(prediction_HEK),
+    'PSR': format_predictions(prediction_PSR),
+    'SGAC_transformed': format_predictions(prediction_SGAC),
+    'SMAC_transformed': format_predictions(prediction_SMAC),
+    'Tm': format_predictions(prediction_Tm)
+})
+
     prediction_path = 'uploads/Biophysical_Prediction.csv'
     df2.to_csv(prediction_path, index=False)
 
