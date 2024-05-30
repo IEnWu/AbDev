@@ -110,15 +110,15 @@
                                         <td style="border: 1px solid black; padding: 8px; background-color: #FFA07A;">{{ item }}</td>
                                     {% elif loop.index == 8 and item|float > 11.7 %}
                                         <td style="border: 1px solid black; padding: 8px; background-color: #FFA07A;">{{ item }}</td>
-                                    {% elif loop.index == 9 and item|float < 61.6 %}
+                                    {% elif loop.index == 9 and 61.6 > item|float %}
                                         <td style="border: 1px solid black; padding: 8px; background-color: #FFA07A;">{{ item }}</td>
                                     {% elif loop.index == 10 and item|float > 0.27 %}
                                         <td style="border: 1px solid black; padding: 8px; background-color: #FFA07A;">{{ item }}</td>
-                                    {% elif loop.index == 11 and item|float < -0.8622 %}
+                                    {% elif loop.index == 11 and -0.8622 > item|float %}
                                         <td style="border: 1px solid black; padding: 8px; background-color: #FFA07A;">{{ item }}</td>
                                     {% elif loop.index == 12 and item|float > 1.4 %}
                                         <td style="border: 1px solid black; padding: 8px; background-color: #FFA07A;">{{ item }}</td>
-                                    {% elif loop.index == 13 and item|float < 64.0 %}
+                                    {% elif loop.index == 13 and 64.0 > item|float %}
                                         <td style="border: 1px solid black; padding: 8px; background-color: #FFA07A;">{{ item }}</td>
                                     {% else %}
                                         <td style="border: 1px solid black; padding: 8px;">{{ item }}</td>
