@@ -126,6 +126,7 @@
                 </div>
                 <p>Download the Prediction Results file here: <a href="{{ url_for('download_file', filename=predictions_path) }}">{{ predictions_path }}</a></p>
                 <p>*Noted: If these prodicted values exceed the set threshold, they will be highlighted. This indicates that the values do not meet the standards and may pose potential issues for the developability of the mAbs. </p>
+                <P>Threshold: Transformed ACSINS > 0.89; AS > 0.08; BVP > 4.3; Transformed CIC > 1.115; Transformed CSI > 0.734; ELISA > 1.9; HIC > 11.7; PSR > 0.27; Transformed SGAC < -0.862; Transformed SMAC > 1.4. </P>
             {% endif %}
             
             </div>
